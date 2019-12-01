@@ -2,9 +2,12 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.0</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)' == 'RELEASE'">
+    <PublishSingleFile>true</PublishSingleFile>
     <PublishTrimmed>true</PublishTrimmed>
     <!-- <PublishReadyToRun>true</PublishReadyToRun> -->
-    <PublishSingleFile>true</PublishSingleFile>
   </PropertyGroup>
 
 </Project>

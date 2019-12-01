@@ -20,7 +20,10 @@ namespace AksHelloWorld
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    webBuilder.UseStartup<Startup>();
+                    webBuilder
+                        .UseKestrel()
+                        .UseUrls()
+                        .UseStartup<Startup>();
                 });
     }
 }

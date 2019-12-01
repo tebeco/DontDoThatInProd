@@ -1,0 +1,12 @@
+{
+  "name": "aks-poc-js",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./src/index.js",
+  "scripts": { },
+  "author": "tebeco",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}

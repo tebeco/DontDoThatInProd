@@ -1,0 +1,38 @@
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: foobar
+spec:
+  selector:
+    matchLabels:
+      app: barfoo
+  template:
+    metadata:
+      labels:
+        app: barfoo
+    spec:
+        containers:
+        - name: foo
+          image: alpine:latest
+          command:
+            - top
+---
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: foobarkix
+spec:
+  selector:
+    matchLabels:
+      app: barkix
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: barkix
+    spec:
+        containers:
+        - name: kix
+          image: alpine:latest
+          command:
+            - top

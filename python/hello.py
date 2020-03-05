@@ -1,8 +1,8 @@
 from flask import Flask
 app = Flask(__name__)
 
-Alive = True
-Healthy = True
+global Alive = True
+global Healthy = True
 
 @app.route("/")
 def hello():
@@ -10,7 +10,6 @@ def hello():
 
 @app.route("/live")
 def live():
-    global Alive
     if Alive:
         return ("I am alive", 200)
     else:
@@ -18,13 +17,11 @@ def live():
 
 @app.route("/kill")
 def kill():
-    global Alive
     Alive = False
     return "The Liveness probe should now be down"
 
 @app.route("/health")
 def health():
-    global Healthy
     if Healthy:
         return ("I am Healthy", 200)
     else:
@@ -32,13 +29,11 @@ def health():
 
 @app.route("/down")
 def down():
-    global Healthy
     Healthy = False
     return "The Readiness probe should now be down"
 
 @app.route("/up")
 def up():
-    global Healthy
     Healthy = True
     return "The Readiness probe should now be up"
 

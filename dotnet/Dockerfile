@@ -31,7 +31,7 @@ COPY --from=build /app/src/AksHelloWorld/bin/Release/netcoreapp3.0/linux-musl-x6
 COPY --from=build /my-cert/myserver.pfx ./
 
 # ENV ASPNETCORE_ENVIRONMENT Development
-EXPOSE 5000
-EXPOSE 5001
+EXPOSE 80
+EXPOSE 443
 
 CMD ["./AksHelloWorld"]

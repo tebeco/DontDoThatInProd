@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -42,10 +43,28 @@ namespace AksHelloWorld
 
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints =>
+            app.Use(async (context, next) =>
             {
-                endpoints.MapControllers();
+                foreach (var header in context.Request.Headers)
+                {
+                    await context.Response.WriteAsync($"{header.Key} - {header.Value}\n");
+                }
+                var configuration = context.RequestServices.GetService<IConfiguration>();
+
+                await context.Response.WriteAsync($"=======================================================================\n");
+
+                foreach (var conf in configuration.AsEnumerable())
+                { 
+                    await context.Response.WriteAsync($"{conf.Key} - {conf.Value}\n");
+                }
+
+
             });
+
+            // app.UseEndpoints(endpoints =>
+            // {
+            //     endpoints.MapControllers();
+            // });
         }
     }
 }
